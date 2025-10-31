@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Common.Models;
 using System.Linq;
 using DatabaseManager;
+using Services;  // ✅ أضف هذا
+using Utilities; // ✅ أضف هذا
+using Common.Enums; // ✅ أضف هذا
 
 namespace FormsLibrary
 {
@@ -13,22 +16,22 @@ namespace FormsLibrary
         private DataGridView dataGridViewSpending;
         private Panel containerPanel;
         private Label scrollStatusLabel;
-        private Button btnNew, btnSave, btnRefresh, btnSearch, btnClose, btnDiagnostics;
-        private SpendingService _spendingService;
+        private Button btnNew, btnSave, btnRefresh, btnSearch, btnClose, btnDiagnostics, btnLoadByDate;
+        private DateTimePicker datePickerFilter;
+        private SpendingService _spendingService; // ✅ استخدام الخدمة المنفصلة
         private List<SpendingView> _spendingList;
         private DatabaseService _databaseService;
-        private bool _isNewMode = false;
         private User _currentUser;
 
         public PaymentVouchersForm(DatabaseService databaseService, User currentUser = null)
         {
             _databaseService = databaseService;
             _currentUser = currentUser;
-            _spendingService = new SpendingService(databaseService);
+            _spendingService = new SpendingService(databaseService); // ✅ التهيئة الصحيحة
             InitializeComponent();
             SetupForm();
             AddControls();
-            LoadAllSpendingWithStatus();
+            InitializeEmptyDataGridView();
         }
 
         private void SetupForm()

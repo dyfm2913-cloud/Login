@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DatabaseType.cs" />
+    <Compile Include="Interfaces\ISpendingService.cs" />
     <Compile Include="Models\ConnectionSettings.cs" />
+    <Compile Include="Models\DatabaseConfig.cs" />
     <Compile Include="Models\Spending.cs" />
     <Compile Include="Models\SpendingView.cs" />
     <Compile Include="Models\User.cs" />

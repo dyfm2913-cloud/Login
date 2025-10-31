@@ -2,41 +2,50 @@
 
 namespace Common.Models
 {
-    /// <summary>
-    /// نموذج عرض سندات الصرف
-    /// </summary>
     public class SpendingView
     {
-        // الحقول الأساسية - الترتيب الجديد
-        public long ID { get; set; } // ID
-        public long? TheNumber { get; set; } // IDالرقم المرجعي
-        public long? الرقم { get; set; } // الرقم
-        public DateTime? التاريخ { get; set; } // التاريخ
-        public string طريقة_الصرف { get; set; } // طريقة الصرف
-        public decimal? المبلغ { get; set; } // المبلغ
-        public string العملة { get; set; } // العملة
-        public long? AccountID { get; set; } // الصندوق
-        public decimal? ExchangeAmount { get; set; } // مبلغ الحساب
-        public long? ExchangeCurrencyID { get; set; } // عملة الحساب
-        public long? ExchangeAccountID { get; set; } // اسم الحساب
-        public string ملاحظات { get; set; } // ملاحظات
-        public string RefernceNumber { get; set; } // رقم المرجع
-        public string Delivery { get; set; } // مناولة
-        public long? CostCenterID { get; set; } // مركز التكلفة
-        public long? UserID { get; set; } // المستخدم
-        public string المستخدم { get; set; } // المستخدم (اسم)
-        public long? BranchID { get; set; } // الفرع
-        public DateTime? EnterTime { get; set; } // وقت الإدخال
-        public int? Prints { get; set; } // الطبعات
-        public string SpecialChequeNumber { get; set; } // رقم الشيك الخاص
-        public long? CommissionerID { get; set; } // اسم المفوض
-        public bool? IsCommissioner { get; set; } // الصرف للمفوض
-        public bool? IsDepend { get; set; } // معتمد
-        public long? DependUserID { get; set; } // المعتمد
-        public long? ChequeID { get; set; } // الفئات
+        public long ID { get; set; }
+        public long? الرقم { get; set; }
+        public DateTime? التاريخ { get; set; }
+        public string طريقة_الصرف { get; set; }
+        public decimal المبلغ { get; set; }
+        public string العملة { get; set; }
+        public string الصندوق { get; set; }
+        public decimal مبلغ_الحساب { get; set; }
+        public string عملة_الحساب { get; set; }
+        public string اسم_الحساب { get; set; }
+        public string ملاحظات { get; set; }
+        public string رقم_المرجع { get; set; }
+        public string مناولة { get; set; }
+        public string مركز_التكلفة { get; set; }
+        public string المستخدم { get; set; }
+        public string الفرع { get; set; }
+        public DateTime? وقت_الإدخال { get; set; }
+        public int الطبعات { get; set; }
+        public string رقم_الشيك_الخاص { get; set; }
+        public string اسم_المفوض { get; set; }
+        public bool الصرف_للمفوض { get; set; }
+        public bool? معتمد { get; set; }
+        public string المعتمد { get; set; }
+        public string الفئات { get; set; }
 
-        // حقول إضافية للعرض
-        public string عملة_الحساب { get; set; } // عرض عملة الحساب
-        public bool? معتمد { get; set; } // معتمد (للعرض فقط)
+        public SpendingView()
+        {
+            طريقة_الصرف = string.Empty;
+            العملة = string.Empty;
+            الصندوق = string.Empty;
+            عملة_الحساب = string.Empty;
+            اسم_الحساب = string.Empty;
+            ملاحظات = string.Empty;
+            رقم_المرجع = string.Empty;
+            مناولة = string.Empty;
+            مركز_التكلفة = string.Empty;
+            المستخدم = string.Empty;
+            الفرع = string.Empty;
+            رقم_الشيك_الخاص = string.Empty;
+            اسم_المفوض = string.Empty;
+            المعتمد = string.Empty;
+            الفئات = string.Empty;
+        }
     }
 }
