@@ -20,15 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		gitignore.txt = gitignore.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{56627141-BAB9-451A-B3CA-4853D08F96D3}"
-	ProjectSection(SolutionItems) = preProject
-		SpendingService.cs = SpendingService.cs
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{CB1D8852-ACB4-495E-A7E3-8E8E9CB3EC08}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{788E9791-1BC0-4098-8886-F426B5E4A0A2}"
-	ProjectSection(SolutionItems) = preProject
-		Logger.cs = Logger.cs
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{49ABF202-7C6B-41B2-9423-14E3154A606E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +54,14 @@ Global
 		{BA300838-AED0-44F3-8B43-4175192258F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA300838-AED0-44F3-8B43-4175192258F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA300838-AED0-44F3-8B43-4175192258F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB1D8852-ACB4-495E-A7E3-8E8E9CB3EC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB1D8852-ACB4-495E-A7E3-8E8E9CB3EC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB1D8852-ACB4-495E-A7E3-8E8E9CB3EC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB1D8852-ACB4-495E-A7E3-8E8E9CB3EC08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49ABF202-7C6B-41B2-9423-14E3154A606E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49ABF202-7C6B-41B2-9423-14E3154A606E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49ABF202-7C6B-41B2-9423-14E3154A606E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49ABF202-7C6B-41B2-9423-14E3154A606E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

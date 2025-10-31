@@ -86,14 +86,21 @@
       <Project>{8d906949-d9c4-4937-bcb0-e25b2fe1a414}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DatabaseManager\DatabaseManager.csproj">
-      <Project>{59b66565-8048-4cde-b5bc-b3df41ff8e29}</Project>
-      <Name>DatabaseManager</Name>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{cb1d8852-acb4-495e-a7e3-8e8e9cb3ec08}</Project>
+      <Name>Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\SettingsManager\SettingsManager.csproj">
       <Project>{0fe28696-6363-427a-bf61-27d5ae7a86c1}</Project>
       <Name>SettingsManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{49abf202-7c6b-41b2-9423-14e3154a606e}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

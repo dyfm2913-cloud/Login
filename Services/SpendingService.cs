@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Common.Enums;
+using Common.Interfaces;
+using Common.Models;
+using DatabaseManager;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Common.Models;
-using Common.Interfaces;
-using DatabaseManager;
-using Common.Enums;
 using Utilities;
 
 namespace Services

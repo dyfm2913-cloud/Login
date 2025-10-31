@@ -1,4 +1,6 @@
-﻿namespace Common.Models
+﻿using System;
+
+namespace Common.Models
 {
     public class DatabaseConfig
     {
@@ -25,7 +27,7 @@
                    !string.IsNullOrWhiteSpace(DatabaseName);
         }
 
-        public override string ToString()
+        public string GetConnectionString()
         {
             if (UseWindowsAuthentication)
             {
