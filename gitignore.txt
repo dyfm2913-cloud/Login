@@ -1,4 +1,3 @@
-# Visual Studio
 [Bb]in/
 [Oo]bj/
 *.user
@@ -7,11 +6,9 @@
 *.sln.docstates
 .vs/
 packages/
-
-# OS
-Thumbs.db
-.DS_Store
-
-# Logs
+*.nupkg
 *.log
-Logs/
+logs/
+_ReSharper*/
+*.resharper
+.vscode/

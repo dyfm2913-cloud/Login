@@ -15,6 +15,5 @@ namespace Common.Interfaces
         bool DeleteSpending(long spendingID);
         long GetNextVoucherNumber();
         bool ValidateSpending(Spending spending);
-        List<SpendingView> SearchSpending(string searchTerm, DateTime? fromDate, DateTime? toDate);
     }
 }

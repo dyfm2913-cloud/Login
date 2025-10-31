@@ -34,11 +34,11 @@ namespace Common.Models
         {
             TheDate = DateTime.Now;
             EnterTime = DateTime.Now;
-            IsCommissioner = false;
-            IsDepend = false;
-            Prints = 0;
-            Amount = 0;
-            ExchangeAmount = 0;
+            Notes = string.Empty;
+            RefernceNumber = string.Empty;
+            Delivery = string.Empty;
+            SpecialChequeNumber = string.Empty;
+            EntryID = string.Empty;
         }
     }
 }
