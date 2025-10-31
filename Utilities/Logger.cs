@@ -5,50 +5,45 @@ namespace Utilities
 {
     public static class Logger
     {
-        private static readonly string LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+        private static readonly string logFilePath = "application.log";
 
-        static Logger()
+        public static void LogInfo(string message)
         {
-            if (!Directory.Exists(LogPath))
-            {
-                Directory.CreateDirectory(LogPath);
-            }
+            Log("INFO", message);
+        }
+
+        public static void LogWarning(string message)
+        {
+            Log("WARNING", message);
         }
 
         public static void LogError(string message, Exception ex = null)
         {
-            try
+            string errorMessage = message;
+            if (ex != null)
             {
-                string logFile = Path.Combine(LogPath, $"Error_{DateTime.Now:yyyyMMdd}.log");
-                string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - ERROR: {message}";
-
-                if (ex != null)
-                {
-                    logMessage += $"\nException: {ex.Message}\nStackTrace: {ex.StackTrace}";
-                }
-
-                logMessage += "\n" + new string('-', 50) + "\n";
-
-                File.AppendAllText(logFile, logMessage);
+                errorMessage += $"\nException: {ex.Message}\nStack Trace: {ex.StackTrace}";
             }
-            catch
-            {
-                // لا نريد أن يتسبب التسجيل في حدوث أخطاء
-            }
+            Log("ERROR", errorMessage);
         }
 
-        public static void LogInfo(string message)
+        private static void Log(string level, string message)
         {
             try
             {
-                string logFile = Path.Combine(LogPath, $"Info_{DateTime.Now:yyyyMMdd}.log");
-                string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - INFO: {message}\n";
+                string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [{level}] {message}";
 
-                File.AppendAllText(logFile, logMessage);
+                using (StreamWriter writer = new StreamWriter(logFilePath, true))
+                {
+                    writer.WriteLine(logMessage);
+                }
+
+                // Also output to console for debugging
+                Console.WriteLine(logMessage);
             }
             catch
             {
-                // لا نريد أن يتسبب التسجيل في حدوث أخطاء
+                // Ignore logging errors
             }
         }
     }

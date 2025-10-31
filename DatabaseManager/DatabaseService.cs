@@ -1,51 +1,81 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 using Common.Models;
-using Common.Enums;
-using Security;
 
 namespace DatabaseManager
 {
-    public class DatabaseService
+    public class DatabaseService : IDisposable
     {
-        private ConnectionSettings _settings;
+        private SqlConnection _connection;
+        private string _connectionString;
 
-        public DatabaseService(ConnectionSettings settings)
+        public DatabaseService(string connectionString)
         {
-            _settings = settings;
+            _connectionString = connectionString;
         }
 
-        public SqlConnection GetConnection(DatabaseType dbType)
+        public DatabaseService(DatabaseConfig config)
         {
-            string connectionString = GetConnectionString(dbType);
-            return new SqlConnection(connectionString);
+            _connectionString = config.GetConnectionString();
         }
 
-        private string GetConnectionString(DatabaseType dbType)
+        public SqlConnection GetConnection()
         {
-            DatabaseConfig config = dbType == DatabaseType.SystemDatabase
-                ? _settings.SystemDatabase
-                : _settings.AppDatabase;
-
-            return $"Server={config.ServerName};Database={config.DatabaseName};User Id={config.Username};Password={config.Password};";
-        }
-
-        public bool TestConnection(DatabaseType dbType)
-        {
-            try
+            if (_connection == null || _connection.State != ConnectionState.Open)
             {
-                using (var connection = GetConnection(dbType))
+                _connection = new SqlConnection(_connectionString);
+                _connection.Open();
+            }
+            return _connection;
+        }
+
+        public DataTable ExecuteQuery(string query, SqlParameter[] parameters = null)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
+            {
+                if (parameters != null)
+                    command.Parameters.AddRange(parameters);
+
+                var dataTable = new DataTable();
+                using (var adapter = new SqlDataAdapter(command))
                 {
-                    connection.Open();
-                    return true;
+                    adapter.Fill(dataTable);
                 }
+                return dataTable;
             }
-            catch (Exception ex)
+        }
+
+        public int ExecuteNonQuery(string query, SqlParameter[] parameters = null)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                MessageBox.Show($"فشل الاتصال بقاعدة البيانات: {ex.Message}", "خطأ اتصال", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (parameters != null)
+                    command.Parameters.AddRange(parameters);
+
+                return command.ExecuteNonQuery();
             }
+        }
+
+        public T ExecuteScalar<T>(string query, SqlParameter[] parameters = null)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
+            {
+                if (parameters != null)
+                    command.Parameters.AddRange(parameters);
+
+                var result = command.ExecuteScalar();
+                return result != DBNull.Value ? (T)Convert.ChangeType(result, typeof(T)) : default(T);
+            }
+        }
+
+        public void Dispose()
+        {
+            _connection?.Close();
+            _connection?.Dispose();
         }
     }
 }

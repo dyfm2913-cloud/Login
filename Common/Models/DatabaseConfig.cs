@@ -2,41 +2,48 @@
 
 namespace Common.Models
 {
+    [Serializable]
     public class DatabaseConfig
     {
         public string ServerName { get; set; }
         public string DatabaseName { get; set; }
+        public bool UseWindowsAuthentication { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public bool UseWindowsAuthentication { get; set; }
-        public int Timeout { get; set; }
 
         public DatabaseConfig()
         {
             ServerName = ".";
-            DatabaseName = "MasterDB";
+            DatabaseName = "LoginDB";
             UseWindowsAuthentication = true;
-            Timeout = 30;
-            Username = string.Empty;
-            Password = string.Empty;
         }
 
-        public bool IsValid()
+        public DatabaseConfig(string serverName, string databaseName, bool useWindowsAuth = true, string username = "", string password = "")
         {
-            return !string.IsNullOrWhiteSpace(ServerName) &&
-                   !string.IsNullOrWhiteSpace(DatabaseName);
+            ServerName = serverName;
+            DatabaseName = databaseName;
+            UseWindowsAuthentication = useWindowsAuth;
+            Username = username;
+            Password = password;
         }
 
         public string GetConnectionString()
         {
             if (UseWindowsAuthentication)
             {
-                return $"Server={ServerName};Database={DatabaseName};Integrated Security=true;Timeout={Timeout}";
+                return $"Server={ServerName};Database={DatabaseName};Integrated Security=true;";
             }
             else
             {
-                return $"Server={ServerName};Database={DatabaseName};User Id={Username};Password={Password};Timeout={Timeout}";
+                return $"Server={ServerName};Database={DatabaseName};User Id={Username};Password={Password};";
             }
+        }
+
+        public override string ToString()
+        {
+            return UseWindowsAuthentication
+                ? $"Server: {ServerName}, Database: {DatabaseName}, Windows Auth"
+                : $"Server: {ServerName}, Database: {DatabaseName}, User: {Username}";
         }
     }
 }
